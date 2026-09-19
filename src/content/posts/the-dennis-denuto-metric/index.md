@@ -218,15 +218,24 @@ DDM is not a replacement for anything in your pipeline. Your tests still matter.
 
 DDM is the _last_ thing that runs. After everything is green. After the feature is "done." It's the reflective pause between "ready to ship" and "shipped" — the moment where you ask not "does it work?" but "is it right?"
 
-**Spec** → **AI Implementation** → **Tests** → **Security** → **Code Review**
-
-↓
-
-**DDM Vibe Check**
-
-↓
-
-**Ship** (high confidence) / **Iterate** (misaligned)
+<figure class="flow-diagram" aria-labelledby="ddm-flow-title">
+  <figcaption id="ddm-flow-title">The Dennis Denuto Metric decision flow</figcaption>
+  <div class="flow-diagram-stages" aria-label="Delivery pipeline">
+    <span class="flow-diagram-node">Spec</span><span class="flow-diagram-arrow" aria-hidden="true">→</span>
+    <span class="flow-diagram-node">AI implementation</span><span class="flow-diagram-arrow" aria-hidden="true">→</span>
+    <span class="flow-diagram-node">Tests</span><span class="flow-diagram-arrow" aria-hidden="true">→</span>
+    <span class="flow-diagram-node">Security</span><span class="flow-diagram-arrow" aria-hidden="true">→</span>
+    <span class="flow-diagram-node">Code review</span>
+  </div>
+  <div class="flow-diagram-connector" aria-hidden="true">↓</div>
+  <div class="flow-diagram-checkpoint"><span>DDM</span> Vibe check</div>
+  <div class="flow-diagram-connector" aria-hidden="true">↓</div>
+  <div class="flow-diagram-outcomes">
+    <span><strong>Ship</strong><small>high confidence</small></span>
+    <i aria-hidden="true">or</i>
+    <span><strong>Iterate</strong><small>misaligned</small></span>
+  </div>
+</figure>
 
 If you're using an orchestrated agent pipeline — where a planner breaks work into tasks, workers implement, reviewers verify, and a checkpoint gates the result — DDM is the post-checkpoint evaluation that asks the question none of the other agents are asking:
 

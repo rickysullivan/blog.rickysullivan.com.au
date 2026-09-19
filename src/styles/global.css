@@ -829,6 +829,96 @@
     color: inherit;
   }
 
+  .prose .flow-diagram {
+    margin: 2.5rem 0;
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--muted) 62%, var(--background));
+    padding: 1.2rem;
+  }
+
+  .prose .flow-diagram figcaption {
+    margin: 0 0 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .flow-diagram-stages {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .flow-diagram-node,
+  .flow-diagram-checkpoint,
+  .flow-diagram-outcomes span {
+    border: 1px solid var(--border-strong);
+    background: var(--background);
+    padding: 0.48rem 0.65rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .flow-diagram-arrow,
+  .flow-diagram-connector {
+    color: var(--muted-foreground);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .flow-diagram-connector {
+    display: block;
+    margin: 0.7rem auto;
+    text-align: center;
+  }
+
+  .flow-diagram-checkpoint {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, var(--background));
+    color: var(--accent-strong);
+  }
+
+  .flow-diagram-checkpoint span {
+    margin-right: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  .flow-diagram-outcomes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .flow-diagram-outcomes span {
+    display: grid;
+    gap: 0.12rem;
+    min-width: 7.5rem;
+  }
+
+  .flow-diagram-outcomes small {
+    font-size: 0.68rem;
+    font-weight: 400;
+    color: var(--muted-foreground);
+  }
+
+  .flow-diagram-outcomes i {
+    align-self: center;
+    color: var(--muted-foreground);
+    font-size: 0.72rem;
+    font-style: normal;
+  }
+
   .prose code {
     background: var(--muted);
     padding: 0.15rem 0.35rem;

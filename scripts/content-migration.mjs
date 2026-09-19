@@ -71,8 +71,38 @@ const restoreMissingGhostEmbeds = (slug, body) => {
   return body.replace(quote, `${quote}\n\n${courtroomScene}`);
 };
 
+const ddmPipeline = `**Spec** → **AI Implementation** → **Tests** → **Security** → **Code Review**
+
+↓
+
+**DDM Vibe Check**
+
+↓
+
+**Ship** (high confidence) / **Iterate** (misaligned)`;
+
+const ddmFlowDiagram = `<figure class="flow-diagram" aria-labelledby="ddm-flow-title">
+  <figcaption id="ddm-flow-title">The Dennis Denuto Metric decision flow</figcaption>
+  <div class="flow-diagram-stages" aria-label="Delivery pipeline">
+    <span class="flow-diagram-node">Spec</span><span class="flow-diagram-arrow" aria-hidden="true">→</span>
+    <span class="flow-diagram-node">AI implementation</span><span class="flow-diagram-arrow" aria-hidden="true">→</span>
+    <span class="flow-diagram-node">Tests</span><span class="flow-diagram-arrow" aria-hidden="true">→</span>
+    <span class="flow-diagram-node">Security</span><span class="flow-diagram-arrow" aria-hidden="true">→</span>
+    <span class="flow-diagram-node">Code review</span>
+  </div>
+  <div class="flow-diagram-connector" aria-hidden="true">↓</div>
+  <div class="flow-diagram-checkpoint"><span>DDM</span> Vibe check</div>
+  <div class="flow-diagram-connector" aria-hidden="true">↓</div>
+  <div class="flow-diagram-outcomes">
+    <span><strong>Ship</strong><small>high confidence</small></span>
+    <i aria-hidden="true">or</i>
+    <span><strong>Iterate</strong><small>misaligned</small></span>
+  </div>
+</figure>`;
+
 export const rewriteBody = (markdown) =>
   markdown
+    .replace(ddmPipeline, ddmFlowDiagram)
     .replace(/kg-card-begin: html\n([\s\S]*?)\nkg-card-end: html/g, (_, card) =>
       renderGhostCard(card),
     )

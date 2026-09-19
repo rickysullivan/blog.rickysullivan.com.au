@@ -104,3 +104,26 @@ test("renderPost restores the Dennis post's recovered courtroom video poster", (
   assert.match(rendered, /\/media\/images\/2026\/02\/the-castle\.jpg/);
   assert.match(rendered, /https:\/\/www\.youtube\.com\/watch\?v=97IiPli_uXw/);
 });
+
+test("rewriteBody turns the Dennis pipeline sequence into a responsive flow diagram", () => {
+  const input = [
+    "**Spec** → **AI Implementation** → **Tests** → **Security** → **Code Review**",
+    "",
+    "↓",
+    "",
+    "**DDM Vibe Check**",
+    "",
+    "↓",
+    "",
+    "**Ship** (high confidence) / **Iterate** (misaligned)",
+  ].join("\n");
+
+  const output = rewriteBody(input);
+
+  assert.match(output, /<figure class="flow-diagram" aria-labelledby="ddm-flow-title">/);
+  assert.match(
+    output,
+    /<figcaption id="ddm-flow-title">The Dennis Denuto Metric decision flow<\/figcaption>/,
+  );
+  assert.doesNotMatch(output, /\*\*Spec\*\*/);
+});
