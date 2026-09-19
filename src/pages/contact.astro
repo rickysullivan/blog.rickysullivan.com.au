@@ -7,7 +7,6 @@ import { siteConfig } from "@/config/site";
 import { visiblePosts } from "@/lib/posts";
 
 const allPosts = visiblePosts(await getCollection("posts"));
-const instagram = siteConfig.socials.find((social) => social.label === "Instagram");
 ---
 
 <BaseLayout title="Contact" description={`Contact ${siteConfig.name}.`}>
@@ -17,19 +16,13 @@ const instagram = siteConfig.socials.find((social) => social.label === "Instagra
       <header class="pagehead">
         <p class="eyebrow">Contact</p>
         <h1 class="pagehead-title">Say hello.</h1>
-        <p class="pagehead-description">The easiest way to get in touch is a direct message.</p>
+        <p class="pagehead-description">The easiest way to get in touch is email.</p>
       </header>
 
       <div class="prose">
-        {
-          instagram ? (
-            <p>
-              <a href={instagram.href} rel="noreferrer" class="btn btn-outline">Message Ricky on Instagram</a>
-            </p>
-          ) : (
-            <p>Contact details are being added.</p>
-          )
-        }
+        <p>
+          <a href={`mailto:${siteConfig.email}`} class="btn btn-outline">Email Ricky</a>
+        </p>
       </div>
     </div>
   </main>

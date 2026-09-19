@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { requiredOutputPaths } from "../scripts/assert-built-site.mjs";
+import { contactEmail, requiredOutputPaths } from "../scripts/assert-built-site.mjs";
 
 test("requiredOutputPaths covers the recovered site routes and public artifacts", () => {
   assert.deepEqual(requiredOutputPaths, [
@@ -16,4 +16,8 @@ test("requiredOutputPaths covers the recovered site routes and public artifacts"
     "sitemap-index.xml",
     "_redirects",
   ]);
+});
+
+test("contactEmail is the published contact address", () => {
+  assert.equal(contactEmail, "ricky@rickysullivan.com.au");
 });

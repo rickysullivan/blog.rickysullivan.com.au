@@ -1,6 +1,8 @@
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 
+export const contactEmail = "ricky@rickysullivan.com.au";
+
 export const requiredOutputPaths = [
   "index.html",
   "about/index.html",
@@ -19,13 +21,18 @@ export async function assertBuiltSite(distRoot) {
     requiredOutputPaths.map((outputPath) => access(path.join(distRoot, outputPath))),
   );
 
-  const [home, redirects] = await Promise.all([
+  const [home, contact, redirects] = await Promise.all([
     readFile(path.join(distRoot, "index.html"), "utf8"),
+    readFile(path.join(distRoot, "contact/index.html"), "utf8"),
     readFile(path.join(distRoot, "_redirects"), "utf8"),
   ]);
 
   if (home.includes("Tell Him He's Dreamin'")) {
     throw new Error("Draft Ghost content appeared in the generated home page.");
+  }
+
+  if (!contact.includes(`mailto:${contactEmail}`)) {
+    throw new Error("The generated contact page is missing the configured email address.");
   }
 
   for (const legacySlug of [
