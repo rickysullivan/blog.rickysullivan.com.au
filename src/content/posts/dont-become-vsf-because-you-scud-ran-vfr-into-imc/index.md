@@ -1,7 +1,7 @@
 ---
 title: "Don't become VSF because you scud-ran VFR into IMC."
 excerpt: "Aviation has a useful warning for anyone letting an AI invent their requirements."
-category: Aviation
+category: Software
 date: 2026-05-29T02:36:47.000Z
 updatedDate: 2026-05-29T02:36:47.000Z
 author:

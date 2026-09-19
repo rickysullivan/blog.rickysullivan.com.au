@@ -7,6 +7,7 @@ test("requiredOutputPaths covers the recovered site routes and public artifacts"
   assert.deepEqual(requiredOutputPaths, [
     "index.html",
     "about/index.html",
+    "contact/index.html",
     "post/welcome/index.html",
     "post/the-dennis-denuto-metric/index.html",
     "post/dont-become-vsf-because-you-scud-ran-vfr-into-imc/index.html",

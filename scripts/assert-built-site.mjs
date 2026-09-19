@@ -4,6 +4,7 @@ import path from "node:path";
 export const requiredOutputPaths = [
   "index.html",
   "about/index.html",
+  "contact/index.html",
   "post/welcome/index.html",
   "post/the-dennis-denuto-metric/index.html",
   "post/dont-become-vsf-because-you-scud-ran-vfr-into-imc/index.html",

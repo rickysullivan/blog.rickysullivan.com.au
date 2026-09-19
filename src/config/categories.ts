@@ -7,7 +7,7 @@
  * Order matters: it is the order used on the categories index and in the home
  * sidebar.
  */
-export const categories = ["Notes", "Software", "Aviation"] as const;
+export const categories = ["Notes", "Software"] as const;
 
 export type Category = (typeof categories)[number];
 
@@ -23,5 +23,4 @@ export const categorySlug = (category: string) =>
 export const categoryDescriptions: Record<Category, string> = {
   Notes: "Things worth writing down: life, work, and whatever else needs a second look.",
   Software: "Software, AI, and the practice of making useful things.",
-  Aviation: "Flying, decision-making, and keeping the right side up.",
 };

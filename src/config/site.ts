@@ -6,6 +6,7 @@ export const siteConfig = siteSettings;
 export const navigation = [
   { label: "Writing", href: "/posts/" },
   { label: "About", href: "/about/" },
+  { label: "Contact", href: "/contact/" },
 ];
 
 /** Secondary navigation rendered in the footer. */
