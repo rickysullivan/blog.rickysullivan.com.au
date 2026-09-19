@@ -42,6 +42,13 @@ Dennis freezes. He shuffles papers. And then he delivers what has become the mos
 
 > "It's the Constitution. It's Mabo. It's justice. It's law. It's the vibe and... ahh, no, that's it. It's the vibe."
 
+<figure>
+  <a href="https://www.youtube.com/watch?v=97IiPli_uXw" rel="noreferrer">
+    <img src="/media/images/2026/02/the-castle.jpg" alt="Dennis Denuto arguing in court in The Castle" />
+  </a>
+  <figcaption><a href="https://www.youtube.com/watch?v=97IiPli_uXw" rel="noreferrer">Watch the “It’s the vibe” courtroom scene from <em>The Castle</em> on YouTube.</a></figcaption>
+</figure>
+
 The judge is unimpressed. Dennis loses the case.
 
 But here's the thing that everyone forgets about _The Castle_:
@@ -269,12 +276,9 @@ _The Dennis Denuto Metric is being considered as part of the Neuraxis Workflow p
 
 _Dennis Denuto is a fictional character from_[_The Castle (1997)_](https://www.workingdog.com/the-castle)_, directed by_[_Rob Sitch_](https://en.wikipedia.org/wiki/Rob_Sitch)_. No solicitors were harmed in the making of this metric._[_His photocopier is still broken_](https://www.youtube.com/watch?v=iEp3Ig3isxc).
 
-kg-card-begin: html
-**AI disclosure:**
-
-This article was written with AI assistance. AI tools helped with drafting, editing, validation, and refinement.
-
-The argument, final judgement, and responsibility for the piece are mine.
-
-Unless otherwise credited, images in this article were AI-generated.
-kg-card-end: html
+<aside class="article-card article-card--small" aria-label="AI disclosure">
+  <p class="article-card-title">AI disclosure</p>
+  <p>This article was written with AI assistance. AI tools helped with drafting, editing, validation, and refinement.</p>
+  <p>The argument, final judgement, and responsibility for the piece are mine.</p>
+  <p>Unless otherwise credited, images in this article were AI-generated.</p>
+</aside>

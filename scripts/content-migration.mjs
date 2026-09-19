@@ -47,8 +47,35 @@ export const selectPublished = (entries) =>
 
 const escapeHtmlAttribute = (value) => value.replaceAll("&", "&amp;").replaceAll('"', "&quot;");
 
+const renderGhostCard = (source) => {
+  const [titleSource, ...paragraphs] = source.trim().split(/\n\s*\n/);
+  const title = titleSource.replaceAll("**", "").replace(/:$/, "").trim();
+
+  return `<aside class="article-card article-card--small" aria-label="${escapeHtmlAttribute(title)}">
+  <p class="article-card-title">${title}</p>
+${paragraphs.map((paragraph) => `  <p>${paragraph.trim()}</p>`).join("\n")}
+</aside>`;
+};
+
+const restoreMissingGhostEmbeds = (slug, body) => {
+  if (slug !== "the-dennis-denuto-metric") return body;
+
+  const quote = `> "It's the Constitution. It's Mabo. It's justice. It's law. It's the vibe and... ahh, no, that's it. It's the vibe."`;
+  const courtroomScene = `<figure>
+  <a href="https://www.youtube.com/watch?v=97IiPli_uXw" rel="noreferrer">
+    <img src="/media/images/2026/02/the-castle.jpg" alt="Dennis Denuto arguing in court in The Castle" />
+  </a>
+  <figcaption><a href="https://www.youtube.com/watch?v=97IiPli_uXw" rel="noreferrer">Watch the “It’s the vibe” courtroom scene from <em>The Castle</em> on YouTube.</a></figcaption>
+</figure>`;
+
+  return body.replace(quote, `${quote}\n\n${courtroomScene}`);
+};
+
 export const rewriteBody = (markdown) =>
   markdown
+    .replace(/kg-card-begin: html\n([\s\S]*?)\nkg-card-end: html/g, (_, card) =>
+      renderGhostCard(card),
+    )
     .replace(
       /!\[([^\]]*)\]\(\.\.\/images\/([^)]+)\)([^\n]+)/g,
       (_, alt, imagePath, caption) =>
@@ -78,7 +105,7 @@ ${cover}featured: ${override.featured}
 draft: false
 ---
 
-${rewriteBody(entry.body)}`;
+${restoreMissingGhostEmbeds(entry.slug, rewriteBody(entry.body))}`;
 };
 
 export async function migrateGhostContent({ sourceRoot, projectRoot }) {

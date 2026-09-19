@@ -248,12 +248,9 @@ Don’t end up VSF.
 
 **File the flight plan.**
 
-kg-card-begin: html
-**AI disclosure:**
-
-This article was written with AI assistance. AI tools helped with drafting, editing, validation, and refinement.
-
-The argument, final judgement, and responsibility for the piece are mine.
-
-Unless otherwise credited, images in this article were AI-generated.
-kg-card-end: html
+<aside class="article-card article-card--small" aria-label="AI disclosure">
+  <p class="article-card-title">AI disclosure</p>
+  <p>This article was written with AI assistance. AI tools helped with drafting, editing, validation, and refinement.</p>
+  <p>The argument, final judgement, and responsibility for the piece are mine.</p>
+  <p>Unless otherwise credited, images in this article were AI-generated.</p>
+</aside>
