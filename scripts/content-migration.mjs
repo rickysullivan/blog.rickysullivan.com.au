@@ -46,6 +46,22 @@ export const selectPublished = (entries) =>
   entries.filter((entry) => entry.status === "published" && entry.slug !== "about");
 
 const escapeHtmlAttribute = (value) => value.replaceAll("&", "&amp;").replaceAll('"', "&quot;");
+const escapeHtmlText = (value) =>
+  value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+
+const renderCaption = (caption) => {
+  const linkPattern = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g;
+  let output = "";
+  let cursor = 0;
+
+  for (const match of caption.matchAll(linkPattern)) {
+    output += escapeHtmlText(caption.slice(cursor, match.index));
+    output += `<a href="${escapeHtmlAttribute(match[2])}" rel="noreferrer">${escapeHtmlText(match[1])}</a>`;
+    cursor = match.index + match[0].length;
+  }
+
+  return output + escapeHtmlText(caption.slice(cursor));
+};
 
 const renderGhostCard = (source) => {
   const [titleSource, ...paragraphs] = source.trim().split(/\n\s*\n/);
@@ -109,7 +125,7 @@ export const rewriteBody = (markdown) =>
     .replace(
       /!\[([^\]]*)\]\(\.\.\/images\/([^)]+)\)([^\n]+)/g,
       (_, alt, imagePath, caption) =>
-        `<figure>\n  <img src="/media/images/${imagePath}" alt="${escapeHtmlAttribute(alt)}" />\n  <figcaption>${caption.trim()}</figcaption>\n</figure>`,
+        `<figure>\n  <img src="/media/images/${imagePath}" alt="${escapeHtmlAttribute(alt)}" />\n  <figcaption>${renderCaption(caption.trim())}</figcaption>\n</figure>`,
     )
     .replaceAll("](../images/", "](/media/images/")
     .replaceAll("](../files/", "](/media/documents/")

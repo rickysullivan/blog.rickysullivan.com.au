@@ -50,6 +50,16 @@ test("rewriteBody turns an image followed by prose into a semantic caption", () 
   );
 });
 
+test("rewriteBody preserves Markdown links inside recovered captions", () => {
+  const input =
+    "![Film still](../images/film.jpg)Courtesy of [IMDb](https://www.imdb.com/title/tt0099005)";
+
+  assert.match(
+    rewriteBody(input),
+    /Courtesy of <a href="https:\/\/www\.imdb\.com\/title\/tt0099005" rel="noreferrer">IMDb<\/a>/,
+  );
+});
+
 test("rewriteBody converts a Ghost reusable card into a smaller disclosure block", () => {
   const input = [
     "kg-card-begin: html",

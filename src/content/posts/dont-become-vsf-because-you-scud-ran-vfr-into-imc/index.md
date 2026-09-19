@@ -52,7 +52,7 @@ It's what you are when the flight plan you didn't file would no longer have help
 
 <figure>
   <img src="/media/images/2026/05/MV5BMTMxMTI2NjIwMF5BMl5BanBnXkFtZTcwMTU1MDAxMw@@._V1_FMjpg_UX1024_.jpg" alt="Black-and-white screen grab from Air America showing two pilots hanging upside down in the wreckage of a crashed aircraft, still strapped into their seats amid twisted metal, broken panels, exposed wiring, and debris." />
-  <figcaption>When VFR into IMC becomes VSF. Photo by Carolco Pictures - © 1990, courtesy of [https://www.imdb.com/](https://www.imdb.com/title/tt0099005)</figcaption>
+  <figcaption>When VFR into IMC becomes VSF. Photo by Carolco Pictures - © 1990, courtesy of <a href="https://www.imdb.com/title/tt0099005" rel="noreferrer">https://www.imdb.com/</a></figcaption>
 </figure>
 
 Here's the sequence:
