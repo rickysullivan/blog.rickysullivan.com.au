@@ -13,7 +13,10 @@ draft: false
 
 ## Into the Soup
 
-![A small single-engine aircraft flies low through a narrow mountain valley beneath a heavy cloud ceiling, with rocky terrain close below and the valley ahead fading into fog.](/media/images/2026/05/Stormy-valley-flight-through-rugged-terrain.png)Scud running through unclear requirements: it works right up until the path disappears.
+<figure>
+  <img src="/media/images/2026/05/Stormy-valley-flight-through-rugged-terrain.png" alt="A small single-engine aircraft flies low through a narrow mountain valley beneath a heavy cloud ceiling, with rocky terrain close below and the valley ahead fading into fog." />
+  <figcaption>Scud running through unclear requirements: it works right up until the path disappears.</figcaption>
+</figure>
 
 You paste three sentences into `/specify`.
 
@@ -47,7 +50,10 @@ The behaviour that gets you there has a name too: **scud running**. Pushing low 
 
 It's what you are when the flight plan you didn't file would no longer have helped you anyway. The plane is in the trees.
 
-![Black-and-white screen grab from Air America showing two pilots hanging upside down in the wreckage of a crashed aircraft, still strapped into their seats amid twisted metal, broken panels, exposed wiring, and debris.](/media/images/2026/05/MV5BMTMxMTI2NjIwMF5BMl5BanBnXkFtZTcwMTU1MDAxMw@@._V1_FMjpg_UX1024_.jpg)When VFR into IMC becomes VSF. Photo by Carolco Pictures - © 1990, courtesy of [https://www.imdb.com/](https://www.imdb.com/title/tt0099005)
+<figure>
+  <img src="/media/images/2026/05/MV5BMTMxMTI2NjIwMF5BMl5BanBnXkFtZTcwMTU1MDAxMw@@._V1_FMjpg_UX1024_.jpg" alt="Black-and-white screen grab from Air America showing two pilots hanging upside down in the wreckage of a crashed aircraft, still strapped into their seats amid twisted metal, broken panels, exposed wiring, and debris." />
+  <figcaption>When VFR into IMC becomes VSF. Photo by Carolco Pictures - © 1990, courtesy of [https://www.imdb.com/](https://www.imdb.com/title/tt0099005)</figcaption>
+</figure>
 
 Here's the sequence:
 
@@ -65,7 +71,10 @@ The discipline that prevents it is the same kind of discipline that prevents the
 
 ## The Flight Plan
 
-![A completed flight plan on a kneeboard sits beside a laptop showing an abstract structured document, with a small aircraft waiting on the runway in warm early morning light.](/media/images/2026/05/Golden-hour-preflight-planning-at-airfield.png)Planned, checked, and ready for departure.
+<figure>
+  <img src="/media/images/2026/05/Golden-hour-preflight-planning-at-airfield.png" alt="A completed flight plan on a kneeboard sits beside a laptop showing an abstract structured document, with a small aircraft waiting on the runway in warm early morning light." />
+  <figcaption>Planned, checked, and ready for departure.</figcaption>
+</figure>
 
 > A flight plan isn't a vibe. It's a form.
 
@@ -105,7 +114,10 @@ That's the whole trick.
 
 ## Give the Agent Charts
 
-![Dense aeronautical chart spread across a dark aviation operations desk, with route lines, weather overlays, airport diagrams, highlighted alternates, and a small runway-closure warning, suggesting the operational context an AI agent needs before advising.](/media/images/2026/05/Aviation-chart-and-navigation-tools.png)Agents reason safely when the charts, constraints, hazards, and procedures are already on the table.
+<figure>
+  <img src="/media/images/2026/05/Aviation-chart-and-navigation-tools.png" alt="Dense aeronautical chart spread across a dark aviation operations desk, with route lines, weather overlays, airport diagrams, highlighted alternates, and a small runway-closure warning, suggesting the operational context an AI agent needs before advising." />
+  <figcaption>Agents reason safely when the charts, constraints, hazards, and procedures are already on the table.</figcaption>
+</figure>
 
 The first version of the agent shipped with one fatal gap: it had no idea who we were.
 
@@ -189,7 +201,10 @@ The brains aren’t there to replace the human either. They’re there to rememb
 
 ## Same Flight Plan, Different Cockpit
 
-![Three-panel cinematic triptych showing different aircraft cockpits: a commercial jet before departure, a small plane flying through cloudy low-visibility weather, and an advanced aircraft cockpit at night. Each cockpit includes a clipped flight plan or chart, suggesting the same plan carried across different flying environments.](/media/images/2026/05/Cockpits-in-contrast--a-triptych-collection.png)Different cockpits, same flight plan — a reminder that the interface may change, but the underlying architecture, intent, and intelligence remain portable.
+<figure>
+  <img src="/media/images/2026/05/Cockpits-in-contrast--a-triptych-collection.png" alt="Three-panel cinematic triptych showing different aircraft cockpits: a commercial jet before departure, a small plane flying through cloudy low-visibility weather, and an advanced aircraft cockpit at night. Each cockpit includes a clipped flight plan or chart, suggesting the same plan carried across different flying environments." />
+  <figcaption>Different cockpits, same flight plan — a reminder that the interface may change, but the underlying architecture, intent, and intelligence remain portable.</figcaption>
+</figure>
 
 Today the Agent is built in Microsoft Copilot Studio and deployed where our stakeholders already are: Teams, Copilot, M365 — the tools they already pay attention to.
 

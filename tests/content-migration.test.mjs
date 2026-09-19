@@ -35,6 +35,21 @@ test("rewriteBody converts recovered image, document, and Ghost post URLs", () =
   );
 });
 
+test("rewriteBody turns an image followed by prose into a semantic caption", () => {
+  const input =
+    "![Stormy valley](../images/2026/05/valley.png)Scud running through unclear requirements.";
+
+  assert.equal(
+    rewriteBody(input),
+    [
+      "<figure>",
+      '  <img src="/media/images/2026/05/valley.png" alt="Stormy valley" />',
+      "  <figcaption>Scud running through unclear requirements.</figcaption>",
+      "</figure>",
+    ].join("\n"),
+  );
+});
+
 test("isIgnoredArtifact keeps Finder metadata out of public media", () => {
   assert.equal(isIgnoredArtifact(".DS_Store"), true);
   assert.equal(isIgnoredArtifact("stormy-valley.png"), false);

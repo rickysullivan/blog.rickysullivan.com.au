@@ -45,8 +45,15 @@ export const parseGhostEntry = (source) => {
 export const selectPublished = (entries) =>
   entries.filter((entry) => entry.status === "published" && entry.slug !== "about");
 
+const escapeHtmlAttribute = (value) => value.replaceAll("&", "&amp;").replaceAll('"', "&quot;");
+
 export const rewriteBody = (markdown) =>
   markdown
+    .replace(
+      /!\[([^\]]*)\]\(\.\.\/images\/([^)]+)\)([^\n]+)/g,
+      (_, alt, imagePath, caption) =>
+        `<figure>\n  <img src="/media/images/${imagePath}" alt="${escapeHtmlAttribute(alt)}" />\n  <figcaption>${caption.trim()}</figcaption>\n</figure>`,
+    )
     .replaceAll("](../images/", "](/media/images/")
     .replaceAll("](../files/", "](/media/documents/")
     .replace(/__GHOST_URL__\/([^/)]+)\/?/g, "/post/$1/");
