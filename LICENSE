@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2023 Sat Naing
+Copyright (c) 2026 Andrei Alba
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+Third-party assets bundled with this theme keep their own licenses:
+
+- Geist and Geist Mono (public/fonts/geist) — SIL Open Font License 1.1.
+  See public/fonts/geist/LICENSE.txt.
+- Bootstrap Icons (src/icons/bootstrap) — MIT License.
+  See src/icons/bootstrap/LICENSE.md.
+- Demo cover images in src/content/posts are from Unsplash and are credited in
+  each post's frontmatter. Replace them with your own images before publishing.
