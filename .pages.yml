@@ -1,0 +1,118 @@
+media:
+  - name: images
+    input: public/media/images
+    output: /media/images
+    categories: [image]
+  - name: documents
+    input: public/media/documents
+    output: /media/documents
+    categories: [document]
+
+content:
+  - name: posts
+    label: Posts
+    type: collection
+    path: src/content/posts
+    format: yaml-frontmatter
+    subfolders: true
+    filename: "{primary}.md"
+    view:
+      fields: [title, date, category, draft]
+      primary: title
+      sort: [date, desc]
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: excerpt
+        type: text
+        required: true
+      - name: category
+        type: select
+        options: [Notes, Software, Aviation]
+        required: true
+      - name: date
+        type: date
+        required: true
+      - name: updatedDate
+        type: date
+      - name: author
+        type: object
+        fields:
+          - name: name
+            type: string
+            required: true
+          - name: role
+            type: string
+            required: true
+      - name: cover
+        type: object
+        fields:
+          - name: src
+            type: image
+            options:
+              media: images
+          - name: alt
+            type: string
+      - name: featured
+        type: boolean
+        default: false
+      - name: draft
+        type: boolean
+        default: false
+      - name: body
+        type: rich-text
+
+  - name: site
+    label: Site settings
+    type: file
+    path: src/config/site.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: name
+        type: string
+        required: true
+      - name: tagline
+        type: string
+        required: true
+      - name: title
+        type: string
+        required: true
+      - name: description
+        type: text
+        required: true
+      - name: siteUrl
+        type: string
+        required: true
+      - name: authorName
+        type: string
+        required: true
+      - name: email
+        type: string
+      - name: language
+        type: string
+        required: true
+      - name: dateLocale
+        type: string
+        required: true
+      - name: locale
+        type: string
+        required: true
+      - name: socialImage
+        type: string
+        required: true
+      - name: about
+        type: text
+        required: true
+      - name: socials
+        type: object
+        list: true
+        fields:
+          - name: label
+            type: string
+            required: true
+          - name: href
+            type: string
+            required: true

@@ -1,13 +1,12 @@
 ---
-import { getCollection } from "astro:content";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { siteConfig } from "@/config/site";
-import { authorSlug, getAllAuthors, visiblePosts } from "@/lib/posts";
+import { getCollection } from "astro:content";
+import { visiblePosts } from "@/lib/posts";
 
 const allPosts = visiblePosts(await getCollection("posts"));
-const authors = getAllAuthors(allPosts);
 ---
 
 <BaseLayout
@@ -26,28 +25,46 @@ const authors = getAllAuthors(allPosts);
       <div class="prose">
         <h2>What gets published here</h2>
         <p>
-          Long-form notes on building software: the decision behind a change, what it cost, and what
-          would be done differently next time. Posts are written to be read once, carefully, rather
-          than skimmed.
+          Senior developer at <a href="https://security.gallagher.com/">Gallagher Security</a> by day,
+          curious web tinkerer by night.
         </p>
 
-        <h2>How it is written</h2>
+        <h2>Dad</h2>
+        <p>Dad to three boys, which means my debugging skills extend well beyond code.</p>
+
+        <h2>Drongo</h2>
+        <p><em>drongo</em> | ˈdrɒŋɡəʊ | noun</p>
+        <ol>
+          <li>A songbird with glossy black plumage and typically a long forked tail and a crest, found in Africa, southern Asia, and Australia.</li>
+          <li><em>Australian / New Zealand informal.</em> A stupid or incompetent person.</li>
+        </ol>
+
+        <h3>Origin</h3>
         <p>
-          Every post aims to be reproducible and honest about trade-offs. If something did not work,
-          that goes in too. Corrections are made in place, with the update date shown at the top of
-          the post.
+          As well as being the name of a bird found in north-eastern Australia, Drongo was the name
+          of a racehorse foaled in 1921. It usually performed poorly, although it was placed a number
+          of times, and retired in 1925. Thereafter, anyone slow-witted or clumsy was referred to as a
+          drongo.
         </p>
-
-        <h2>Who writes it</h2>
-        <ul>
-          {
-            authors.map((author) => (
-              <li>
-                <a href={`/author/${authorSlug(author.name)}/`}>{author.name}</a> — {author.role} ({author.posts.length} {author.posts.length === 1 ? "post" : "posts"})
-              </li>
-            ))
-          }
-        </ul>
+        <p>
+          The horse was lampooned by cartoonist Sam Wells in drawings depicting “Drongo Mk. 1” in the
+          <em> Melbourne Herald</em> during the early 1920s. The word became nationally used as a reference
+          to <a href="https://thepirateshipquintet.bandcamp.com/album/rope-for-no-hopers/">no-hopers</a>
+          during World War II.
+        </p>
+        <blockquote>
+          <p>Drongo wasn’t such a drongo<br />But of course the legend grew<br />And legends are stronger than truth<br />So everyone believes now<br />That Drongo was an old camel<br />Who always ran last.</p>
+          <p>But some of us remember a colt<br />Running second in a Derby;<br />He didn’t look so clumsy<br />Just for that second…</p>
+          <p>Sure he never won a race,<br />Neither did I, mate;<br />Most of us never win races<br />And so they call us drongoes.</p>
+        </blockquote>
+        <p>Wannan, Bill (1979) [1970]. <em>Australian Folklore</em>. Lansdowne Press, p. 200.</p>
+        <p>
+          “Drongo” went from a racehorse that never won to Aussie slang for a loser — yet its story
+          proves that coming second still beats never running at all.
+        </p>
+        <p>
+          <a href="/media/documents/2025/08/news-article_CAREER-OF-DRONGO.pdf">Read the newspaper clipping: Career of Drongo</a>
+        </p>
 
         <h2>Get in touch</h2>
         <p>
