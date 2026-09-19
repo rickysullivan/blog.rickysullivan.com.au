@@ -1,158 +1,126 @@
-# AstroPaper 📄
+# Monograph - Minimal Astro Blog Theme
 
-![AstroPaper](public/astropaper-og.jpg)
-![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![GitHub](https://img.shields.io/github/license/satnaing/astro-paper?color=%232F3741&style=for-the-badge)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white&style=for-the-badge)](https://conventionalcommits.org)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
+[![Monograph theme preview](/preview.webp)](https://monograph.xocoweb.workers.dev/)
 
-AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro blog theme. This theme is designed and crafted based on [my personal blog](https://satnaing.dev/blog).
+[![Astro 7](https://img.shields.io/badge/Astro-7-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build/)
+[![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Configured-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-84cc16?style=for-the-badge)](./LICENSE)
 
-This theme follows best practices and provides accessibility out of the box. Light and dark mode are supported by default. Moreover, additional color schemes can also be configured.
+**Live preview:** https://monograph.xocoweb.workers.dev/
 
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. Read [the blog posts](https://astro-paper.pages.dev/posts/) or check [the README Documentation Section](#-documentation) for more info.
+Monograph is a free Astro theme for essays, notes, and long-form writing. It is text-first by design: the feed is a reading list rather than a card grid, so titles and excerpts carry the page and covers appear on the post itself. Type is monochrome with a single ink-blue accent held back for links, dates, and hover states, articles read in one centred column, and every hover runs on the same easing curve so nothing calls attention to itself. Categories, navigation, and SEO defaults come from a small set of config files, content is Markdown or MDX validated by Astro content collections, and the output is static: fast pages, crawlable articles, and no framework islands to hydrate.
 
-## 🔥 Features
+## Features
 
-- [x] type-safe markdown
-- [x] super fast performance
-- [x] accessible (Keyboard/VoiceOver)
-- [x] responsive (mobile ~ desktops)
-- [x] SEO-friendly
-- [x] light & dark mode
-- [x] fuzzy search
-- [x] draft posts & pagination
-- [x] sitemap & rss feed
-- [x] followed best practices
-- [x] highly customizable
-- [x] dynamic OG image generation for blog posts [#15](https://github.com/satnaing/astro-paper/pull/15) ([Blog Post](https://astro-paper.pages.dev/posts/dynamic-og-image-generation-in-astropaper-blog-posts/))
+- Text-first front page: a large latest post, a whitespace-separated feed with no thumbnails, and a sticky sidebar holding the about blurb, a subscribe form, featured posts, and categories with post counts
+- Article pages with a single 720px reading column, a byline that reads "By author in category", a share row above the feature image, copy-link, previous/next navigation, and related posts
+- Categories as the only taxonomy: one short configured list, a `/categories/` index with descriptions and counts, and a generated archive per category
+- Author, archive, search, about, contact, privacy, and 404 pages, plus RSS, sitemap, and `robots.txt`
+- Built-in client-side search with a keyboard-friendly command palette and a dedicated results page — no search service and no database, and nothing listed until the first keystroke
+- System-aware light and dark modes behind a header toggle switch, applied before first paint with the reader's choice remembered
+- Read time calculated from the post body at build time, so nothing to maintain by hand
+- Markdown and MDX content powered by Astro content collections, with dual light/dark syntax-highlighted code blocks (plus a copy button), styled lists, and blockquotes
+- Reusable MDX content components — `Callout` (note/tip/warning/danger) and tabbed `CodeGroup` code samples — available in any post with no imports
+- Frontmatter validation for titles, excerpts, categories, dates, authors, covers, featured, and drafts
+- Sticky header that hides while scrolling down and slides back in on the way up
+- Restrained hover motion on one easing curve: titles pick up the accent, inline links wipe an underline in, arrows lean toward their destination, and icon buttons lift
+- Optional feature images, capped in height and shown on the post only, never in a feed
+- Central site, navigation, category, social, and SEO defaults
+- Canonical URLs, sitemap generation, RSS, Open Graph, Twitter/X cards, and JSON-LD
+- Accessible skip link, landmarks, labels, a `role="switch"` theme toggle, keyboard-friendly controls, visible focus states, and reduced-motion support
+- Provider-neutral newsletter and contact forms that run as working demos until an endpoint is configured
+- Tailwind CSS 4 tokens in cascade layers, with no external font requests by default
 
-_Note: I've tested screen-reader accessibility of AstroPaper using **VoiceOver** on Mac and **TalkBack** on Android. I couldn't test all other screen-readers out there. However, accessibility enhancements in AstroPaper should be working fine on others as well._
+## Tech Stack
 
-## ✅ Lighthouse Score
+- Astro 7
+- Tailwind CSS 4 via the Vite plugin
+- TypeScript
+- Astro content collections
+- `@astrojs/sitemap`, `@astrojs/mdx`, `rehype-slug`
+- Sharp for image processing
 
-<p align="center">
-  <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fastro-paper.pages.dev%2F&form_factor=desktop">
-    <img width="710" alt="AstroPaper Lighthouse Score" src="AstroPaper-lighthouse-score.svg">
-  <a>
-</p>
+## Requirements
 
-## 🚀 Project Structure
+- Node.js `22.12.0` or newer
+- npm
 
-Inside of AstroPaper, you'll see the following folders and files:
-
-```bash
-/
-├── public/
-│   ├── assets/
-│   │   └── logo.svg
-│   │   └── logo.png
-│   └── favicon.svg
-│   └── astropaper-og.jpg
-│   └── robots.txt
-│   └── toggle-theme.js
-├── src/
-│   ├── assets/
-│   │   └── socialIcons.ts
-│   ├── components/
-│   ├── content/
-│   │   |  blog/
-│   │   |    └── some-blog-posts.md
-│   │   └── config.ts
-│   ├── layouts/
-│   └── pages/
-│   └── styles/
-│   └── utils/
-│   └── config.ts
-│   └── types.ts
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-All blog posts are stored in `src/content/blog` directory.
-
-## 📖 Documentation
-
-Documentation can be read in two formats\_ _markdown_ & _blog post_.
-
-- Configuration - [markdown](src/content/blog/how-to-configure-astropaper-theme.md) | [blog post](https://astro-paper.pages.dev/posts/how-to-configure-astropaper-theme/)
-- Add Posts - [markdown](src/content/blog/adding-new-post.md) | [blog post](https://astro-paper.pages.dev/posts/adding-new-posts-in-astropaper-theme/)
-- Customize Color Schemes - [markdown](src/content/blog/customizing-astropaper-theme-color-schemes.md) | [blog post](https://astro-paper.pages.dev/posts/customizing-astropaper-theme-color-schemes/)
-- Predefined Color Schemes - [markdown](src/content/blog/predefined-color-schemes.md) | [blog post](https://astro-paper.pages.dev/posts/predefined-color-schemes/)
-
-> For AstroPaper v1, check out [this branch](https://github.com/satnaing/astro-paper/tree/astro-paper-v1) and this [live URL](https://astro-paper-v1.astro-paper.pages.dev/)
-
-## 💻 Tech Stack
-
-**Main Framework** - [Astro](https://astro.build/)  
-**Type Checking** - [TypeScript](https://www.typescriptlang.org/)  
-**Component Framework** - [ReactJS](https://reactjs.org/)  
-**Styling** - [TailwindCSS](https://tailwindcss.com/)  
-**UI/UX** - [Figma](https://figma.com)  
-**Fuzzy Search** - [FuseJS](https://fusejs.io/)  
-**Icons** - [Boxicons](https://boxicons.com/) | [Tablers](https://tabler-icons.io/)  
-**Code Formatting** - [Prettier](https://prettier.io/)  
-**Deployment** - [Cloudflare Pages](https://pages.cloudflare.com/)  
-**Illustration in About Page** - [https://freesvgillustration.com](https://freesvgillustration.com/)  
-**Linting** - [ESLint](https://eslint.org)
-
-## 👨🏻‍💻 Running Locally
-
-The easiest way to run this project locally is to run the following command in your desired directory.
+## Getting Started
 
 ```bash
-# npm 6.x
-npm create astro@latest --template satnaing/astro-paper
-
-# npm 7+, extra double-dash is needed:
-npm create astro@latest -- --template satnaing/astro-paper
-
-# yarn
-yarn create astro --template satnaing/astro-paper
+npm install
+npm run dev
 ```
 
-## Google Site Verification (optional)
-
-You can easily add your [Google Site Verification HTML tag](https://support.google.com/webmasters/answer/9008080#meta_tag_verification&zippy=%2Chtml-tag) in AstroPaper using environment variable. This step is optional. If you don't add the following env variable, the google-site-verification tag won't appear in the html `<head>` section.
+Build for production and preview the output:
 
 ```bash
-# in your environment variable file (.env)
-PUBLIC_GOOGLE_SITE_VERIFICATION=your-google-site-verification-value
+npm run build
+npm run preview
 ```
 
-## 🧞 Commands
+Before deploying, set `siteUrl` in [src/config/site.ts](./src/config/site.ts) — canonical URLs, RSS,
+sitemap, social images, and JSON-LD all derive from it.
 
-All commands are run from the root of the project, from a terminal:
+## Content
 
-> **_Note!_** For `Docker` commands we must have it [installed](https://docs.docker.com/engine/install/) in your machine.
+Posts live in [src/content/posts](./src/content/posts). Each post is a folder containing an
+`index.md` or `index.mdx` and, optionally, a `cover.jpg`:
 
-| Command                              | Action                                                                                                                           |
-| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
-| `npm install`                        | Installs dependencies                                                                                                            |
-| `npm run dev`                        | Starts local dev server at `localhost:4321`                                                                                      |
-| `npm run build`                      | Build your production site to `./dist/`                                                                                          |
-| `npm run preview`                    | Preview your build locally, before deploying                                                                                     |
-| `npm run format:check`               | Check code format with Prettier                                                                                                  |
-| `npm run format`                     | Format codes with Prettier                                                                                                       |
-| `npm run sync`                       | Generates TypeScript types for all Astro modules. [Learn more](https://docs.astro.build/en/reference/cli-reference/#astro-sync). |
-| `npm run cz`                         | Commit code changes with commitizen                                                                                              |
-| `npm run lint`                       | Lint with ESLint                                                                                                                 |
-| `docker compose up -d`               | Run AstroPaper on docker, You can access with the same hostname and port informed on `dev` command.                              |
-| `docker compose run app npm install` | You can run any command above into the docker container.                                                                         |
-
-> **_Warning!_** Windows PowerShell users may need to install the [concurrently package](https://www.npmjs.com/package/concurrently) if they want to [run diagnostics](https://docs.astro.build/en/reference/cli-reference/#astro-check) during development (`astro check --watch & astro dev`). For more info, see [this issue](https://github.com/satnaing/astro-paper/issues/113).
-
-## ✨ Feedback & Suggestions
-
-If you have any suggestions/feedback, you can contact me via [my email](mailto:contact@satnaing.dev). Alternatively, feel free to open an issue if you find bugs or want to request new features.
-
-## 📜 License
-
-Licensed under the MIT License, Copyright © 2023
-
+```yaml
 ---
+title: "Design Tokens That Survive Product Growth"
+excerpt: "Tokens work when they describe decisions."
+category: "Design Systems" # must match src/config/categories.ts
+date: 2026-07-05
+updatedDate: 2026-07-11 # optional
+author:
+  name: "Leah Morgan"
+  role: "Design systems and craft"
+cover: # optional; shown on the post, never in the feed
+  src: "./cover.jpg"
+  alt: "Soft gradient mesh"
+  creditName: "Credits to Codioful via Unsplash"
+  creditUrl: "https://unsplash.com/photos/..."
+featured: false # true lists it in the home sidebar
+draft: false
+---
+```
 
-Made with 🤍 by [Sat Naing](https://satnaing.dev) 👨🏻‍💻 and [contributors](https://github.com/satnaing/astro-paper/graphs/contributors).
+Read time is calculated from the body at build time. The schema in
+[src/content.config.ts](./src/content.config.ts) is enforced, so a typo fails the build rather than
+shipping a broken page, and `category` must match an entry in
+[src/config/categories.ts](./src/config/categories.ts).
+
+Authors come from frontmatter too: posts sharing a `name` are grouped into an author archive
+automatically.
+
+## Routes
+
+| Route                                                           | Page                           |
+| --------------------------------------------------------------- | ------------------------------ |
+| `/`                                                             | Latest post, feed, and sidebar |
+| `/posts/[page]`                                                 | Paginated archive              |
+| `/post/<slug>/`                                                 | Article                        |
+| `/categories/`                                                  | Category index with counts     |
+| `/category/<slug>/`                                             | Posts in one category          |
+| `/author/`, `/author/<name>/`                                   | Author index and archive       |
+| `/search/`                                                      | Full search page (`?q=...`)    |
+| `/about/`, `/contact/`, `/privacy/`                             | Starter static pages           |
+| `/rss.xml`, `/sitemap.xml`, `/robots.txt`, `/search-index.json` | Feeds and generated endpoints  |
+
+## Customization
+
+See [CUSTOMIZATION.md](./CUSTOMIZATION.md) for site settings, navigation, categories, authors, the
+newsletter and contact forms, search, reading mode, motion, theme tokens, fonts, and icons.
+
+## Support
+
+Monograph is free and provided as-is. Bug reports and questions are welcome as GitHub issues; custom
+design and feature work is not included.
+
+## License
+
+MIT — free for personal and commercial projects. See [LICENSE](./LICENSE), which also lists the
+licenses of the bundled fonts, icons, and demo images.

@@ -1,0 +1,18 @@
+{
+  "name": "Ricky Sullivan Himself",
+  "tagline": "Developer. Dad. Drongo.",
+  "title": "Ricky Sullivan Himself",
+  "description": "Notes on software, aviation, fatherhood, and the odd serious thing from Ricky Sullivan.",
+  "siteUrl": "https://blog.rickysullivan.com.au",
+  "authorName": "Ricky Sullivan",
+  "email": "ricky@rickysullivan.com.au",
+  "language": "en",
+  "dateLocale": "en-NZ",
+  "locale": "en_NZ",
+  "socialImage": "/og-image.png",
+  "about": "Ricky is a senior developer, dad of three, and a proud drongo. This is where he writes down the things worth keeping.",
+  "socials": [
+    { "label": "Instagram", "href": "https://www.instagram.com/rickysullivan/" },
+    { "label": "RSS", "href": "/rss.xml" }
+  ]
+}

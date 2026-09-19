@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { siteConfig } from "@/config/site";
+import { visiblePosts } from "@/lib/posts";
+
+const allPosts = visiblePosts(await getCollection("posts"));
+---
+
+<BaseLayout title="Contact" description={`Contact ${siteConfig.name}.`}>
+  <SiteHeader posts={allPosts} />
+  <main id="content" class="outer">
+    <div class="canvas">
+      <header class="pagehead">
+        <p class="eyebrow">Contact</p>
+        <h1 class="pagehead-title">Say hello.</h1>
+        <p class="pagehead-description">The easiest way to get in touch is email.</p>
+      </header>
+
+      <div class="prose">
+        <p>
+          <a href={`mailto:${siteConfig.email}`} class="btn btn-outline">Email Ricky</a>
+        </p>
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</BaseLayout>
