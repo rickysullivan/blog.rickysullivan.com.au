@@ -29,7 +29,7 @@ content:
         required: true
       - name: category
         type: select
-        options: [Notes, Software, Aviation]
+        options: [Notes, Software]
         required: true
       - name: date
         type: date
