@@ -7,6 +7,9 @@ updatedDate: 2026-05-28T22:45:26.000Z
 author:
   name: Ricky Sullivan
   role: Developer, dad, drongo
+cover:
+  src: "/media/images/2026/02/8BE5F841-23F3-4C0E-8323-DEED36F28FE7.png"
+  alt: "Feature image for It's the Vibe of it"
 featured: true
 draft: false
 ---

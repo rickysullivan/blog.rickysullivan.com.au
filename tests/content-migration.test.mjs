@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { isIgnoredArtifact, rewriteBody, selectPublished } from "../scripts/content-migration.mjs";
+import {
+  isIgnoredArtifact,
+  renderPost,
+  rewriteBody,
+  selectPublished,
+} from "../scripts/content-migration.mjs";
 
 test("selectPublished excludes the special about page and Ghost drafts", () => {
   const entries = [
@@ -33,4 +38,20 @@ test("rewriteBody converts recovered image, document, and Ghost post URLs", () =
 test("isIgnoredArtifact keeps Finder metadata out of public media", () => {
   assert.equal(isIgnoredArtifact(".DS_Store"), true);
   assert.equal(isIgnoredArtifact("stormy-valley.png"), false);
+});
+
+test("renderPost preserves a recovered local feature image as the post cover", () => {
+  const rendered = renderPost({
+    title: "It's the Vibe of it",
+    slug: "the-dennis-denuto-metric",
+    published_at: "2026-02-19T08:18:05.000Z",
+    updated_at: "2026-05-28T22:45:26.000Z",
+    feature_image: "../images/2026/02/8BE5F841-23F3-4C0E-8323-DEED36F28FE7.png",
+    body: "Recovered body.",
+  });
+
+  assert.match(
+    rendered,
+    /cover:\n  src: "\/media\/images\/2026\/02\/8BE5F841-23F3-4C0E-8323-DEED36F28FE7\.png"/,
+  );
 });

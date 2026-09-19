@@ -13,7 +13,7 @@ const postOverrides = {
     featured: true,
   },
   "dont-become-vsf-because-you-scud-ran-vfr-into-imc": {
-    category: "Aviation",
+    category: "Software",
     excerpt: "Aviation has a useful warning for anyone letting an AI invent their requirements.",
     featured: true,
   },
@@ -54,6 +54,9 @@ export const rewriteBody = (markdown) =>
 export const renderPost = (entry) => {
   const override = postOverrides[entry.slug];
   if (!override) throw new Error(`No migration override for ${entry.slug}.`);
+  const cover = entry.feature_image?.startsWith("../images/")
+    ? `cover:\n  src: ${JSON.stringify(entry.feature_image.replace("../images/", "/media/images/"))}\n  alt: ${JSON.stringify(`Feature image for ${entry.title}`)}\n`
+    : "";
 
   return `---
 title: ${JSON.stringify(entry.title)}
@@ -64,7 +67,7 @@ updatedDate: ${entry.updated_at}
 author:
   name: Ricky Sullivan
   role: Developer, dad, drongo
-featured: ${override.featured}
+${cover}featured: ${override.featured}
 draft: false
 ---
 

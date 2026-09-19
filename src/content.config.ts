@@ -5,7 +5,7 @@ import { categories } from "@/config/categories";
 
 const posts = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/posts" }),
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       title: z.string(),
       excerpt: z.string(),
@@ -23,7 +23,7 @@ const posts = defineCollection({
        */
       cover: z
         .object({
-          src: image(),
+          src: z.string(),
           alt: z.string(),
           creditName: z.string().optional(),
           creditUrl: z.url().optional(),
