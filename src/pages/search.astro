@@ -55,7 +55,7 @@ const searchItems = allPosts.map((post) => ({
   <SiteFooter />
 
   <script is:inline type="application/json" id="search-page-data" set:html={JSON.stringify(searchItems)} />
-  <script is:inline>
+  <script is:inline data-astro-rerun>
     (() => {
       const input = document.querySelector("[data-search-page-input]");
       const results = document.querySelector("[data-search-page-results]");

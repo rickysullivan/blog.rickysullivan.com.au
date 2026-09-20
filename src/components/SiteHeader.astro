@@ -181,8 +181,23 @@ const isCurrentPath = (href: string) =>
 
 <script is:inline type="application/json" id="site-search-fallback" set:html={JSON.stringify(searchFallback)} />
 
-<script is:inline>
+<script is:inline data-astro-rerun>
   (() => {
+    window.__siteHeaderCleanup?.();
+    const controller = new AbortController();
+    const { signal } = controller;
+    let isNavigating = false;
+    let closeMenu = () => {};
+    window.__siteHeaderCleanup = () => {
+      controller.abort();
+      closeMenu();
+      document.documentElement.classList.remove("has-open-search", "has-open-menu");
+    };
+
+    const listen = (target, event, handler, options = {}) => {
+      target?.addEventListener(event, handler, { ...options, signal });
+    };
+
     const dialog = document.querySelector("[data-search-dialog]");
     const toggle = document.querySelector("[data-search-toggle]");
     const closeButton = dialog?.querySelector("[data-search-close]");
@@ -302,26 +317,26 @@ const isCurrentPath = (href: string) =>
       if (dialog?.open) dialog.close();
     };
 
-    toggle?.addEventListener("click", (event) => {
+    listen(toggle, "click", (event) => {
       if (!dialog || typeof dialog.showModal !== "function") return;
       event.preventDefault();
       open();
     });
 
-    closeButton?.addEventListener("click", close);
+    listen(closeButton, "click", close);
 
-    dialog?.addEventListener("close", () => {
+    listen(dialog, "close", () => {
       document.documentElement.classList.remove("has-open-search");
-      toggle?.focus();
+      if (!isNavigating) toggle?.focus();
     });
 
-    dialog?.addEventListener("click", (event) => {
+    listen(dialog, "click", (event) => {
       if (event.target === dialog) close();
     });
 
-    input?.addEventListener("input", () => void render());
+    listen(input, "input", () => void render());
 
-    input?.addEventListener("keydown", (event) => {
+    listen(input, "keydown", (event) => {
       if (event.key !== "ArrowDown") return;
       const first = results?.querySelector("a");
       if (!first) return;
@@ -329,7 +344,7 @@ const isCurrentPath = (href: string) =>
       first.focus();
     });
 
-    results?.addEventListener("keydown", (event) => {
+    listen(results, "keydown", (event) => {
       if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
 
       const links = Array.from(results.querySelectorAll("a"));
@@ -342,7 +357,7 @@ const isCurrentPath = (href: string) =>
       else links[current - 1]?.focus();
     });
 
-    document.addEventListener("keydown", (event) => {
+    listen(document, "keydown", (event) => {
       const target = event.target;
       const isEditing =
         target instanceof HTMLElement &&
@@ -386,7 +401,8 @@ const isCurrentPath = (href: string) =>
       };
 
       updateHeader();
-      window.addEventListener(
+      listen(
+        window,
         "scroll",
         () => {
           if (ticking) return;
@@ -427,21 +443,22 @@ const isCurrentPath = (href: string) =>
           inerted = [];
         }
       };
+      closeMenu = () => setMenuOpen(false);
 
-      menuButton.addEventListener("click", () => {
+      listen(menuButton, "click", () => {
         setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
       });
 
       menuPanel.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => setMenuOpen(false));
+        listen(link, "click", () => setMenuOpen(false));
       });
 
-      menuClose?.addEventListener("click", () => {
+      listen(menuClose, "click", () => {
         setMenuOpen(false);
         menuButton.focus();
       });
 
-      document.addEventListener("keydown", (event) => {
+      listen(document, "keydown", (event) => {
         if (menuPanel.hidden) return;
 
         if (event.key === "Escape") {
@@ -466,10 +483,16 @@ const isCurrentPath = (href: string) =>
         }
       });
 
-      desktopMedia.addEventListener("change", (event) => {
+      listen(desktopMedia, "change", (event) => {
         if (event.matches && !menuPanel.hidden) setMenuOpen(false);
       });
     }
+
+    listen(document, "astro:before-preparation", () => {
+      isNavigating = true;
+      close();
+      closeMenu();
+    });
   })();
 </script>
 

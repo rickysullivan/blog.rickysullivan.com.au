@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "@/config/site";
+import { ClientRouter } from "astro:transitions";
 import "@/styles/global.css";
 
 interface Props {
@@ -67,6 +68,7 @@ const schema = structuredData ?? defaultStructuredData;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absoluteImage} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <ClientRouter fallback="none" />
     <script is:inline>
       /*
        * Runs before first paint so the stored reading mode is applied without a
@@ -74,9 +76,9 @@ const schema = structuredData ?? defaultStructuredData;
        */
       (() => {
         const storageKey = "monograph-theme";
-        const root = document.documentElement;
         const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
         let storedTheme;
+        let toggleController;
 
         try {
           storedTheme = localStorage.getItem(storageKey);
@@ -93,7 +95,7 @@ const schema = structuredData ?? defaultStructuredData;
         };
 
         const setTheme = (theme, persist = false) => {
-          root.dataset.theme = theme;
+          document.documentElement.dataset.theme = theme;
           if (persist) {
             storedTheme = theme;
             try {
@@ -117,14 +119,19 @@ const schema = structuredData ?? defaultStructuredData;
           setTheme(event.matches ? "dark" : "light");
         });
 
-        window.addEventListener("DOMContentLoaded", () => {
-          updateToggles(root.dataset.theme || preferredTheme);
+        const bindThemeToggles = () => {
+          toggleController?.abort();
+          toggleController = new AbortController();
+          updateToggles(document.documentElement.dataset.theme || preferredTheme);
           document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
             button.addEventListener("click", () => {
-              setTheme(root.dataset.theme === "dark" ? "light" : "dark", true);
-            });
+              setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark", true);
+            }, { signal: toggleController.signal });
           });
-        });
+        };
+
+        document.addEventListener("astro:after-swap", () => setTheme(preferredTheme));
+        document.addEventListener("astro:page-load", bindThemeToggles);
       })();
     </script>
   </head>

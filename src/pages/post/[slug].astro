@@ -202,7 +202,7 @@ const structuredData = {
   </main>
   <SiteFooter />
 
-  <script is:inline>
+  <script is:inline data-astro-rerun>
     document.querySelectorAll("[data-copy-link]").forEach((button) => {
       const status = button.parentElement?.querySelector("[data-copy-status]");
 
@@ -264,9 +264,14 @@ const structuredData = {
     import PhotoSwipeLightbox from "photoswipe/lightbox";
     import "photoswipe/style.css";
 
-    const gallery = document.querySelector<HTMLElement>("[data-photoswipe-gallery]");
+    let lightbox: PhotoSwipeLightbox | undefined;
 
-    if (gallery) {
+    const setupLightbox = () => {
+      lightbox?.destroy();
+      lightbox = undefined;
+      const gallery = document.querySelector<HTMLElement>("[data-photoswipe-gallery]");
+      if (!gallery) return;
+
       gallery.querySelectorAll<HTMLImageElement>(".article-image img, .prose img").forEach((image) => {
         const existingLink = image.closest<HTMLAnchorElement>("a");
         const link = existingLink ?? document.createElement("a");
@@ -290,14 +295,15 @@ const structuredData = {
         image.addEventListener("load", setDimensions, { once: true });
       });
 
-      const lightbox = new PhotoSwipeLightbox({
+      const instance = new PhotoSwipeLightbox({
         gallery,
         children: ".lightbox-image",
         pswpModule: () => import("photoswipe"),
       });
+      lightbox = instance;
 
-      lightbox.on("uiRegister", () => {
-        const pswp = lightbox.pswp;
+      instance.on("uiRegister", () => {
+        const pswp = instance.pswp;
         if (!pswp?.ui) return;
 
         pswp.ui.registerElement({
@@ -320,8 +326,11 @@ const structuredData = {
         });
       });
 
-      lightbox.init();
-    }
+      instance.init();
+    };
+
+    setupLightbox();
+    document.addEventListener("astro:page-load", setupLightbox);
   </script>
 
   <style>
