@@ -24,6 +24,10 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "media:sync": "node scripts/sync-media-assets.mjs",
+    "prebuild": "npm run media:sync",
+    "precheck": "npm run media:sync",
+    "predev": "npm run media:sync",
     "dev": "astro dev",
     "build": "astro build",
     "check": "astro check",
