@@ -163,7 +163,12 @@
     group.classList.add("is-enhanced");
   }
 
-  document.querySelectorAll<HTMLElement>("[data-code-group]").forEach((group, index) => {
-    setupCodeGroup(group, `code-group-${index}`);
-  });
+  const setupCodeGroups = () => {
+    document.querySelectorAll<HTMLElement>("[data-code-group]").forEach((group, index) => {
+      setupCodeGroup(group, `code-group-${index}`);
+    });
+  };
+
+  setupCodeGroups();
+  document.addEventListener("astro:page-load", setupCodeGroups);
 </script>
