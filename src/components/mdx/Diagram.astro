@@ -1,0 +1,78 @@
+---
+interface Props {
+  title: string;
+  steps: string[];
+  checkpoint?: string;
+  pass?: string;
+  retry?: string;
+}
+
+const { title, steps, checkpoint, pass, retry } = Astro.props;
+---
+
+<figure class="editorial-diagram" aria-labelledby="editorial-diagram-title">
+  <figcaption id="editorial-diagram-title">{title}</figcaption>
+  <ol class="editorial-diagram__steps">
+    {steps.map((step) => <li>{step}</li>)}
+  </ol>
+  {checkpoint && <p class="editorial-diagram__checkpoint">{checkpoint}</p>}
+  {(pass || retry) && (
+    <ul class="editorial-diagram__outcomes" aria-label="Possible outcomes">
+      {pass && <li><strong>Continue:</strong> {pass}</li>}
+      {retry && <li><strong>Revisit:</strong> {retry}</li>}
+    </ul>
+  )}
+</figure>
+
+<style>
+  .editorial-diagram {
+    margin: 2.5rem 0;
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--muted) 62%, var(--background));
+    padding: 1.2rem;
+  }
+
+  .editorial-diagram > figcaption {
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .editorial-diagram__steps,
+  .editorial-diagram__outcomes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .editorial-diagram__steps li,
+  .editorial-diagram__outcomes li,
+  .editorial-diagram__checkpoint {
+    border: 1px solid var(--border-strong);
+    background: var(--background);
+    padding: 0.48rem 0.65rem;
+    font-size: 0.78rem;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .editorial-diagram__steps li:not(:last-child)::after {
+    content: "→";
+    margin-left: 1rem;
+    color: var(--muted-foreground);
+  }
+
+  .editorial-diagram__checkpoint {
+    width: fit-content;
+    margin: 0.8rem auto;
+    border-color: var(--accent);
+    color: var(--accent-strong);
+  }
+</style>

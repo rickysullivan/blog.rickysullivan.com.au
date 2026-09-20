@@ -8,6 +8,11 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Callout from "@/components/mdx/Callout.astro";
 import CodeGroup from "@/components/mdx/CodeGroup.astro";
 import CodeGroupItem from "@/components/mdx/CodeGroupItem.astro";
+import Diagram from "@/components/mdx/Diagram.astro";
+import Disclosure from "@/components/mdx/Disclosure.astro";
+import Figure from "@/components/mdx/Figure.astro";
+import FurtherReading from "@/components/mdx/FurtherReading.astro";
+import PullQuote from "@/components/mdx/PullQuote.astro";
 import { siteConfig } from "@/config/site";
 import {
   authorSlug,
@@ -37,7 +42,16 @@ interface Props {
 
 const { post, allPosts } = Astro.props;
 const { Content } = await render(post);
-const mdxComponents = { Callout, CodeGroup, CodeGroupItem };
+const mdxComponents = {
+  Callout,
+  CodeGroup,
+  CodeGroupItem,
+  Diagram,
+  Disclosure,
+  Figure,
+  FurtherReading,
+  PullQuote,
+};
 const data = post.data;
 const related = getRelated(allPosts, post);
 const { newer, older } = getAdjacent(allPosts, post);
