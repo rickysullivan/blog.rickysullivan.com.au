@@ -836,6 +836,11 @@
     margin: 2rem 0;
   }
 
+  .lightbox-image {
+    display: block;
+    cursor: zoom-in;
+  }
+
   .prose figcaption {
     margin-top: 0.6rem;
     font-size: 0.8125rem;

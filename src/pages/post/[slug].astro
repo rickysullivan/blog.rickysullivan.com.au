@@ -88,7 +88,7 @@ const structuredData = {
 >
   <SiteHeader posts={allPosts} />
   <main id="content" class="outer">
-    <article>
+    <article data-photoswipe-gallery>
       <header class="canvas pt-10 md:pt-14">
         <p class="meta post-meta">
           <span class="post-meta__byline">
@@ -258,6 +258,44 @@ const structuredData = {
         }, 1800);
       });
     });
+  </script>
+
+  <script>
+    import PhotoSwipeLightbox from "photoswipe/lightbox";
+    import "photoswipe/style.css";
+
+    const gallery = document.querySelector<HTMLElement>("[data-photoswipe-gallery]");
+
+    if (gallery) {
+      gallery.querySelectorAll<HTMLImageElement>(".article-image img, .prose img").forEach((image) => {
+        const existingLink = image.closest<HTMLAnchorElement>("a");
+        const link = existingLink ?? document.createElement("a");
+
+        if (!existingLink) {
+          image.parentNode?.insertBefore(link, image);
+          link.append(image);
+        }
+
+        link.classList.add("lightbox-image");
+        link.href = image.currentSrc || image.src;
+        link.setAttribute("aria-label", `Open image: ${image.alt || "full size"}`);
+
+        const setDimensions = () => {
+          if (!image.naturalWidth || !image.naturalHeight) return;
+          link.dataset.pswpWidth = String(image.naturalWidth);
+          link.dataset.pswpHeight = String(image.naturalHeight);
+        };
+
+        setDimensions();
+        image.addEventListener("load", setDimensions, { once: true });
+      });
+
+      new PhotoSwipeLightbox({
+        gallery,
+        children: ".lightbox-image",
+        pswpModule: () => import("photoswipe"),
+      }).init();
+    }
   </script>
 
   <style>
