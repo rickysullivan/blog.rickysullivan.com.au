@@ -1,0 +1,48 @@
+---
+import manifest from "@/generated-media-manifest.json";
+
+interface Variant {
+  width: number;
+  src: string;
+}
+
+interface Descriptor {
+  width: number;
+  height: number;
+  variants: Record<"avif" | "webp", Variant[]> | null;
+}
+
+interface Props {
+  src: string;
+  alt: string;
+  loading?: "eager" | "lazy";
+  sizes?: string;
+  class?: string;
+}
+
+const { src, alt, loading = "lazy", sizes = "(min-width: 768px) 720px, 100vw", class: className } = Astro.props;
+const descriptor = (manifest as Record<string, Descriptor>)[src];
+const sourceSet = (variants: Variant[]) => variants.map(({ src, width }) => `${src} ${width}w`).join(", ");
+---
+
+{
+  descriptor?.variants ? (
+    <picture>
+      <source type="image/avif" srcset={sourceSet(descriptor.variants.avif)} sizes={sizes} />
+      <source type="image/webp" srcset={sourceSet(descriptor.variants.webp)} sizes={sizes} />
+      <img
+        src={src}
+        alt={alt}
+        width={descriptor.width}
+        height={descriptor.height}
+        loading={loading}
+        decoding="async"
+        class={className}
+      />
+    </picture>
+  ) : descriptor ? (
+    <img src={src} alt={alt} width={descriptor.width} height={descriptor.height} loading={loading} decoding="async" class={className} />
+  ) : (
+    <img src={src} alt={alt} loading={loading} decoding="async" class={className} />
+  )
+}

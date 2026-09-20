@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import LocalIcon from "@/components/LocalIcon.astro";
 import PostCard from "@/components/PostCard.astro";
+import ResponsiveImage from "@/components/ResponsiveImage.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -138,11 +139,10 @@ const structuredData = {
 
       {data.cover && (
         <figure class="article-image inner">
-          <img
+          <ResponsiveImage
             src={data.cover.src}
             alt={data.cover.alt}
             loading="eager"
-            decoding="async"
             class="w-full"
           />
           {data.cover.creditName && (

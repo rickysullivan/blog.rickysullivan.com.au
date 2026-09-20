@@ -9,6 +9,8 @@ lerna-debug.log*
 
 node_modules
 .astro
+public/media/_responsive/
+src/generated-media-manifest.json
 dist
 dist-ssr
 .output
