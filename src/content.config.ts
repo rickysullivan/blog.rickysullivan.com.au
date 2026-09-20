@@ -11,6 +11,8 @@ const posts = defineCollection({
       excerpt: z.string(),
       /** Must match one of the entries in src/config/categories.ts. */
       category: z.enum(categories),
+      /** Optional editorial grouping; posts sharing a value are shown together. */
+      series: z.string().trim().min(1).optional(),
       date: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
       author: z.object({
@@ -28,6 +30,15 @@ const posts = defineCollection({
           creditName: z.string().optional(),
           creditUrl: z.url().optional(),
         })
+        .optional(),
+      /** Curated reading or reference links shown after the article. */
+      sources: z
+        .array(
+          z.object({
+            label: z.string().trim().min(1),
+            url: z.url(),
+          }),
+        )
         .optional(),
       /** Surfaces the post in the "Featured" list in the home sidebar. */
       featured: z.boolean().default(false),

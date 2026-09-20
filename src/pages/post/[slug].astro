@@ -15,6 +15,7 @@ import {
   formatDate,
   getAdjacent,
   getRelated,
+  getSeriesPeers,
   postHref,
   postSlug,
   readingLabel,
@@ -40,6 +41,7 @@ const { Content } = await render(post);
 const mdxComponents = { Callout, CodeGroup, CodeGroupItem };
 const data = post.data;
 const related = getRelated(allPosts, post);
+const seriesPeers = getSeriesPeers(allPosts, post);
 const { newer, older } = getAdjacent(allPosts, post);
 const authorHref = `/author/${authorSlug(data.author.name)}/`;
 const articleUrl = new URL(postHref(post), siteConfig.siteUrl).toString();
@@ -100,6 +102,8 @@ const structuredData = {
             <span>{readingLabel(post)}</span>
           </span>
         </p>
+
+        {data.series && <p class="eyebrow mt-5">Series: {data.series}</p>}
 
         <h1 class="article-title">{data.title}</h1>
         <p class="article-excerpt">{data.excerpt}</p>
@@ -162,6 +166,30 @@ const structuredData = {
       <div class="prose canvas mt-12">
         <Content components={mdxComponents} />
       </div>
+
+      {data.sources && data.sources.length > 0 && (
+        <section class="canvas mt-12" aria-labelledby="sources-heading">
+          <h2 id="sources-heading" class="section-title">Sources</h2>
+          <ul class="grid gap-3">
+            {data.sources.map((source) => (
+              <li>
+                <a href={source.url} rel="noreferrer" class="link-sweep">
+                  {source.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {data.series && seriesPeers.length > 0 && (
+        <section class="canvas mt-12" aria-labelledby="series-heading">
+          <h2 id="series-heading" class="section-title">More in {data.series}</h2>
+          <div class="grid gap-7">
+            {seriesPeers.map((item) => <PostCard post={item} variant="compact" headingLevel="h3" />)}
+          </div>
+        </section>
+      )}
 
       {(newer || older) && (
         <footer class="canvas mt-16 border-t border-border pt-8">
