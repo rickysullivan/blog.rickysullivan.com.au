@@ -20,4 +20,6 @@ test("published posts expose images as an accessible PhotoSwipe gallery", () => 
   assert.match(scripts, /lightbox-image/);
   assert.match(scripts, /pswpModule/);
   assert.match(scripts, /pswpWidth/);
+  assert.match(scripts, /pswp__caption/);
+  assert.match(scripts, /figcaption/);
 });

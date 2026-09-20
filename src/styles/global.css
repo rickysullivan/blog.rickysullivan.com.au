@@ -841,6 +841,22 @@
     cursor: zoom-in;
   }
 
+  .pswp__caption {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    max-width: 42rem;
+    margin: 0 auto;
+    border-radius: var(--radius-sm);
+    background: rgb(0 0 0 / 72%);
+    padding: 0.5rem 0.75rem;
+    color: #fff;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    pointer-events: none;
+  }
+
   .prose figcaption {
     margin-top: 0.6rem;
     font-size: 0.8125rem;

@@ -290,11 +290,37 @@ const structuredData = {
         image.addEventListener("load", setDimensions, { once: true });
       });
 
-      new PhotoSwipeLightbox({
+      const lightbox = new PhotoSwipeLightbox({
         gallery,
         children: ".lightbox-image",
         pswpModule: () => import("photoswipe"),
-      }).init();
+      });
+
+      lightbox.on("uiRegister", () => {
+        const pswp = lightbox.pswp;
+        if (!pswp?.ui) return;
+
+        pswp.ui.registerElement({
+          name: "caption",
+          className: "pswp__caption",
+          order: 15,
+          isButton: false,
+          appendTo: "root",
+          onInit: (element, pswp) => {
+            const updateCaption = () => {
+              const imageLink = pswp.currSlide?.data.element;
+              const caption = imageLink?.closest("figure")?.querySelector("figcaption");
+              const alt = imageLink?.querySelector<HTMLImageElement>("img")?.alt;
+              element.textContent = caption?.textContent?.trim() || alt || "";
+            };
+
+            pswp.on("change", updateCaption);
+            updateCaption();
+          },
+        });
+      });
+
+      lightbox.init();
     }
   </script>
 
