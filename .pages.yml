@@ -31,6 +31,8 @@ content:
         type: select
         options: [Notes, Software]
         required: true
+      - name: series
+        type: string
       - name: date
         type: date
         required: true
@@ -54,6 +56,16 @@ content:
               media: images
           - name: alt
             type: string
+      - name: sources
+        type: object
+        list: true
+        fields:
+          - name: label
+            type: string
+            required: true
+          - name: url
+            type: string
+            required: true
       - name: featured
         type: boolean
         default: false

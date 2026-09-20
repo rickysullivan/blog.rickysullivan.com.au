@@ -1,6 +1,7 @@
 import type { CollectionEntry } from "astro:content";
 import { categories, categorySlug, type Category } from "@/config/categories";
 import { siteConfig } from "@/config/site";
+import { getSeriesPeers } from "@/lib/series";
 
 export type Post = CollectionEntry<"posts">;
 export { categories, categorySlug, type Category };
@@ -66,6 +67,8 @@ export const getRelated = (posts: Post[], current: Post, limit = 3) =>
       return sameCategory || byNewest(a, b);
     })
     .slice(0, limit);
+
+export { getSeriesPeers };
 
 /** Previous/next in publication order, matching the article footer navigation. */
 export const getAdjacent = (posts: Post[], current: Post) => {
