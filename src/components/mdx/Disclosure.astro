@@ -1,0 +1,37 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = "Disclosure" } = Astro.props;
+---
+
+<details class="editorial-disclosure">
+  <summary>{title}</summary>
+  <div class="editorial-disclosure__body"><slot /></div>
+</details>
+
+<style>
+  .editorial-disclosure {
+    margin: 1.75rem 0;
+    border-left: 2px solid var(--border-strong);
+    background: var(--muted);
+    padding: 0.9rem 1.1rem;
+  }
+
+  .editorial-disclosure summary {
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .editorial-disclosure__body :global(p:first-child) {
+    margin-top: 0.8rem;
+  }
+
+  .editorial-disclosure__body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+</style>

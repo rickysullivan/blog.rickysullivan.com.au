@@ -1,0 +1,44 @@
+---
+title: "Editorial components, without a design system in the way"
+excerpt: "A compact reference for captions, disclosures, pull quotes, diagrams, and further-reading blocks."
+category: Notes
+date: 2026-09-20
+author:
+  name: Ricky Sullivan
+  role: Writer
+featured: false
+draft: true
+---
+
+<Figure
+  src="/media/images/2026/05/Golden-hour-preflight-planning-at-airfield.png"
+  alt="A flight plan beside a laptop and an aircraft on a runway."
+  caption="A caption stays with the image it explains."
+/>
+
+<Disclosure title="AI disclosure">
+
+This is the right place for context that matters but should not interrupt the reading line.
+
+</Disclosure>
+
+<PullQuote attribution="A useful editing rule">
+
+The component should make the writing clearer, not announce itself.
+
+</PullQuote>
+
+<Diagram
+  title="A small editorial decision flow"
+  steps={["Draft", "Edit", "Check"]}
+  checkpoint="Does it help the reader?"
+  pass="Publish"
+  retry="Simplify"
+/>
+
+<FurtherReading>
+
+- [Astro MDX documentation](https://docs.astro.build/en/guides/integrations-guide/mdx/)
+- [Pages CMS authoring notes](https://pagescms.org/docs/configuration/fields/rich-text/)
+
+</FurtherReading>

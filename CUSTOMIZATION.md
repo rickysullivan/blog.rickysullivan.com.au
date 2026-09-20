@@ -209,6 +209,18 @@ passed to `<Content />` in [src/pages/post/\[slug\].astro](./src/pages/post/[slu
   and [CodeGroupItem.astro](./src/components/mdx/CodeGroupItem.astro). Fenced code blocks inside
   `<CodeGroupItem>` need a blank line before and after, since MDX only parses Markdown inside JSX
   when it is separated by blank lines.
+- `<Figure src="..." alt="..." caption="..." />` — an image and its caption, kept as one semantic
+  figure for the reader and the image lightbox.
+- `<Disclosure title="...">...</Disclosure>` — optional context presented as a native, accessible
+  disclosure.
+- `<PullQuote attribution="...">...</PullQuote>` — a deliberately prominent editorial quotation.
+- `<Diagram title="..." steps={["..."]} checkpoint="..." pass="..." retry="..." />` — a small,
+  responsive decision flow with text alternatives rather than a canvas or image.
+- `<FurtherReading>...</FurtherReading>` — an aside containing a Markdown list of relevant links.
+
+Pages CMS should continue to author ordinary posts through its Markdown rich-text field. These
+components use MDX syntax, so enhanced posts should be created by a technical editor in Git (or a
+future dedicated raw MDX editor); do not paste component syntax into the ordinary WYSIWYG body.
 
 [src/content/posts/writing-richer-tutorials-with-mdx-components](./src/content/posts/writing-richer-tutorials-with-mdx-components/index.mdx)
 demonstrates both. To add your own, build it in `src/components/mdx`, import it in `[slug].astro`,

@@ -1,0 +1,28 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+const { src, alt, caption } = Astro.props;
+---
+
+<figure class="editorial-figure">
+  <img src={src} alt={alt} loading="lazy" decoding="async" />
+  {(caption || Astro.slots.has("default")) && (
+    <figcaption>
+      {caption ? caption : <slot />}
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  .editorial-figure {
+    margin: 2rem 0;
+  }
+
+  .editorial-figure img {
+    width: 100%;
+  }
+</style>
